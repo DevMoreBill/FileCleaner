@@ -25,9 +25,10 @@ public class FolderCleaner
                 long finalSize = GetFolderSize(folderPath);
                 long freedSpace = initialSize - finalSize;
 
-                // Вывод количества удаленных файлов не работает???
-                int deletedFilesCount = GetDeletedFilesCount(folderPath);
-                Console.WriteLine($"Удалено файлов: {deletedFilesCount}");
+                //// Вывод количества удаленных файлов не работает???
+                //int deletedFilesCount = GetDeletedFilesCount(folderPath);
+                //Console.WriteLine($"Удалено файлов: {deletedFilesCount}");
+
                 Console.WriteLine($"Освобождено места: {GetFileSizeString(freedSpace)}");
                 Console.WriteLine($"Размер папки после очистки: {GetFileSizeString(finalSize)}");
             }
@@ -96,22 +97,22 @@ public class FolderCleaner
         return size;
     }
 
-    // Функция для получения количества удаленных файлов
-    public static int GetDeletedFilesCount(string folderPath)
-    {
-        int deletedFilesCount = 0;
-        TimeSpan thresholdTime = TimeSpan.FromMinutes(30);
-        DateTime now = DateTime.Now;
+    //// Функция для получения количества удаленных файлов
+    //public static int GetDeletedFilesCount(string folderPath)
+    //{
+    //    int deletedFilesCount = 0;
+    //    TimeSpan thresholdTime = TimeSpan.FromMinutes(30);
+    //    DateTime now = DateTime.Now;
 
-        foreach (string filePath in Directory.EnumerateFiles(folderPath, "*", SearchOption.AllDirectories))
-        {
-            if (now - File.GetLastWriteTime(filePath) > thresholdTime)
-            {
-                deletedFilesCount++;
-            }
-        }
-        return deletedFilesCount;
-    }
+    //    foreach (string filePath in Directory.EnumerateFiles(folderPath, "*", SearchOption.AllDirectories))
+    //    {
+    //        if (now - File.GetLastWriteTime(filePath) > thresholdTime)
+    //        {
+    //            deletedFilesCount++;
+    //        }
+    //    }
+    //    return deletedFilesCount;
+    //}
 
     // Функция для форматирования размера в человеческий вид
     public static string GetFileSizeString(decimal size)
